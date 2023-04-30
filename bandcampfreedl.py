@@ -374,7 +374,7 @@ total_download_size = 0
 for url in results[STARTPOS:]:
 
     if request_count > 1000:
-        print(f"request count is greater than 1000: {request_count}. Pretending to be a human only goes so far. Do not get IP blocked; take a break.")
+        print(f"Request count is greater than 1000: {request_count}.")
         print("[ctrl + c] exits. Progress is recorded in \"checkpoint.txt\".")
     if url in checkpoint:
         iterations += 1
