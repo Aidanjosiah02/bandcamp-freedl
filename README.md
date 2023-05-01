@@ -2,11 +2,11 @@
 A Python script for downloading free albums and tracks with their metadata in the highest quality available. No Selenium or Scrapy; uses Requests. Also works around albums/tracks that require emails automatically by using a temporary email service (thanks to ['1secMail'](https://www.1secmail.com/api/) for their API!). For albums and tracks that require payment, this script can grab the 128kbps mp3 files as higher quality copies are not available without purchase.
 
 * Script waiting with every request?  
-This is an attempt to act somewhat similar to someone using a browser and to fit in with the rest of the traffic in order to be respectful to Bandcamp. If you want to turn this off, change the `WAITS` constant at the top of the script to `False`.
+This is an attempt to act somewhat similar to someone using a browser and to fit in with the rest of the traffic in order to be respectful to Bandcamp. If you want to turn this off, change the `WAITS` constant at the top of "bandcampfreedl.py" to `False`.
 
 # Use in other projects
-This project is not actively maintained, though I may update it once in a while if it stops working or on my own time. 
-It is written in a somewhat naive manner and is thus not suitable for use in other projects. For this case think of it as a reference for understanding how Bandcamp's download process works. 
+This project is not actively maintained, though I may update it once in a while if it stops working or if I improve it on my own time. 
+It is written in a somewhat naive manner and is thus not suitable for use in other projects. For this case think of it as a reference for understanding how Bandcamp's download process works.
 
 # Install and run
 Ensure you have [Python](https://www.python.org/) installed first and included in your system PATH.  
