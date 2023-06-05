@@ -21,7 +21,7 @@ BATCH = (ROOT / "batch.txt")
 TEMPMAIL_API = 'https://www.1secmail.com/api/v1/'
 tempmail_domainList = ['1secmail.com', '1secmail.net', '1secmail.org']
 tempmail_domain = random.choice(tempmail_domainList)
-download_pattern = r'http://bandcamp.com/download\?.+'
+download_pattern = r'https://bandcamp.com/download\?.+'
 fsig_pattern = r'&fsig=([a-z0-9]{32})'
 ts_pattern = r'&ts=([0-9]{10}\.[0-9])'
 background_pattern = re.compile(r'background-image: url\((.*?)\);', re.MULTILINE | re.DOTALL)
@@ -113,7 +113,7 @@ def write_file(session, download_url, path_w_filename, filename):
                 f.write(response.content)
         else:
             start = default_timer()
-            for data in response.iter_content(chunk_size=mib):
+            for data in response.iter_content(chunk_size=(mib*4)):
                 dl += len(data)
                 f.write(data)
                 done = int(32 * dl / total_length)
@@ -468,7 +468,9 @@ for url in results[STARTPOS:]:
 
     if price > 0.0:
         txt_filename = (re.sub(windows_forbidden, '_', (dict["publisher_name"] + " - [" + dict["publisher_id"] + "]-paid_releases.csv")))
-        txt_path = (ROOT / txt_filename)
+        txt_dir = (ROOT / "paid_releases")
+        txt_dir.mkdir(parents=True, exist_ok=True)
+        txt_path = (txt_dir / txt_filename)
         print(f"{aname} - {title}")
         print(f"Price: {str(price)}{currency}.")
 
@@ -533,6 +535,7 @@ for url in results[STARTPOS:]:
             try:
                 text = tempmail_session.get(tempmail_read).json()["textBody"]
                 tempmail_found_url = re.findall(download_pattern, text)[0]
+                print(tempmail_found_url)
                 if len(tempmail_found_url) > 32:
                     download_page = tempmail_found_url
             except:
